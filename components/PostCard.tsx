@@ -1,15 +1,9 @@
-// components/PostCard.tsx
 "use client";
 import { Post } from "@/lib/types/postsTypes";
-import Link from "next/link";
 import { useState } from "react";
 
 const PostCard: React.FC<Post> = ({ title, body, id }) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  // console.log("[title]", title);
-  // console.log("[body]", body);
-
-  console.log("[id ыфв]", id);
 
   const truncateText = (text: string, length: number): string => {
     return text?.length > length ? text.slice(0, length) + "..." : text;
