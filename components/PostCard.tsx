@@ -2,12 +2,25 @@
 import { Post } from "@/lib/types/postsTypes";
 import { useState } from "react";
 
-const PostCard: React.FC<Post> = ({ title, body, id }) => {
+interface PostCardProps extends Post {
+  error?: string; 
+}
+
+const PostCard: React.FC<PostCardProps> = ({ title, body, id, error }) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const truncateText = (text: string, length: number): string => {
     return text?.length > length ? text.slice(0, length) + "..." : text;
   };
+
+  if (error) {
+    return (
+      <div className='relative p-6 border border-red-300 rounded-lg bg-red-50'>
+        <h2 className='text-xl font-bold text-red-600'>Error</h2>
+        <p className='text-red-800'>{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div
