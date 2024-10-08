@@ -4,7 +4,6 @@ import { useGetAllPostsQuery } from "@/lib/services/postsApi";
 
 export default function Home() {
   const { data, error, isLoading } = useGetAllPostsQuery();
-
   if (error) {
     return (
       <div className="p-4 border border-red-300 rounded-lg bg-red-50">

@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import { store } from "@/lib/store";
 import { Provider } from "react-redux";
+import { useEffect, useState } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -22,11 +23,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [theme, setTheme] = useState(localStorage.getItem("theme"));
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.body.className = savedTheme;
+    } 
+   
+  }, []);
   return (
-    <html lang='en'>
+    <html lang='en' data-theme={theme}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Header />
+        <Header theme={theme} setTheme={setTheme} />
         <div className=' mx-40'>
           <Provider store={store}>{children}</Provider>
         </div>
