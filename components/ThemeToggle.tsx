@@ -8,13 +8,11 @@ const ThemeToggle = () => {
   useEffect(() => {
     if (t) {
       setTheme(t);
-      console.log("rrrr");
     }
   }, [t]);
 
   const toggleTheme = () => {
     const currentTheme = localStorage.getItem("theme");
-    console.log(currentTheme);
 
     if (!currentTheme) {
       return localStorage.setItem("theme", "light");

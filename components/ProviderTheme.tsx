@@ -9,7 +9,6 @@ const ProviderTheme = ({ children }: IProviderTheme) => {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    console.log("[ggggh]");
     if (savedTheme) {
       setTheme(savedTheme);
     } else {
@@ -18,7 +17,6 @@ const ProviderTheme = ({ children }: IProviderTheme) => {
   }, [currentTheme]);
 
   useEffect(() => {
-    console.log("hhhh");
     if (typeof window !== "undefined") {
       document.documentElement.setAttribute("data-theme", theme);
     }
