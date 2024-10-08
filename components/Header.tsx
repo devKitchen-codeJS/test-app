@@ -6,7 +6,7 @@ const Header = ({theme, setTheme}: any) => {
     <div className=' w-full h-16 flex justify-center items-center relative '>
       <span>Test Task </span>
       <div className=' absolute right-0'>
-        <ThemeToggle theme={theme} setTheme={setTheme}/>
+        <ThemeToggle />
       </div>
     </div>
   );

@@ -1,16 +1,35 @@
 "use client";
 import React, { useEffect, useState } from "react";
-interface ITheme {
-  setTheme: React.Dispatch<React.SetStateAction<string>>;
-  theme: string;
-}
-const ThemeToggle = ({ theme, setTheme }: ITheme) => {
+// interface ITheme {
+//   setTheme: React.Dispatch<React.SetStateAction<string>>;
+//   theme: string;
+// }
+const ThemeToggle = () => {
+  const t = localStorage.getItem("theme");
+  const [theme, setTheme] = useState(t);
+
+  useEffect(() => {
+    if (t) {
+      setTheme(t);
+      console.log("rrrr");
+    }
+  }, [t]);
 
   const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
+    const currentTheme = localStorage.getItem("theme");
+    console.log(currentTheme);
+
+    if (!currentTheme) {
+      return localStorage.setItem("theme", "light");
+    } else {
+      const newTheme = currentTheme === "light" ? "dark" : "light";
+      setTheme(newTheme);
+      if (typeof window !== "undefined") {
+        document.documentElement.setAttribute("data-theme", newTheme);
+        document.body.className = newTheme; // Устанавливаем класс на body
+      }
+      localStorage.setItem("theme", newTheme);
+    }
   };
 
   return (

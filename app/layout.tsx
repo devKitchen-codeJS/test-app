@@ -1,11 +1,13 @@
 "use client";
-import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 import { store } from "@/lib/store";
 import { Provider } from "react-redux";
 import { useEffect, useState } from "react";
+import ProviderTheme from "@/components/ProviderTheme";
+
+// Функция для получения начальной темы
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,24 +25,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [theme, setTheme] = useState(localStorage.getItem("theme"));
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setTheme(savedTheme);
-      document.body.className = savedTheme;
-    } 
-   
-  }, []);
   return (
-    <html lang='en' data-theme={theme}>
+    <html lang='en'>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Header theme={theme} setTheme={setTheme} />
-        <div className=' mx-40'>
-          <Provider store={store}>{children}</Provider>
-        </div>
+        <ProviderTheme>
+          <Header />
+          <div className='mx-40'>
+            <Provider store={store}>{children}</Provider>
+          </div>
+        </ProviderTheme>
       </body>
     </html>
   );
