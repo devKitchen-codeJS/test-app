@@ -1,9 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-// interface ITheme {
-//   setTheme: React.Dispatch<React.SetStateAction<string>>;
-//   theme: string;
-// }
+
 const ThemeToggle = () => {
   const t = localStorage.getItem("theme");
   const [theme, setTheme] = useState(t);
@@ -26,7 +23,7 @@ const ThemeToggle = () => {
       setTheme(newTheme);
       if (typeof window !== "undefined") {
         document.documentElement.setAttribute("data-theme", newTheme);
-        document.body.className = newTheme; // Устанавливаем класс на body
+        document.body.className = newTheme; 
       }
       localStorage.setItem("theme", newTheme);
     }

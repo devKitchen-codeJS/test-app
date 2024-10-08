@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 import { useEffect, useState } from "react";
 import ProviderTheme from "@/components/ProviderTheme";
 
-// Функция для получения начальной темы
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
